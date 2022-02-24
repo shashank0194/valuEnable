@@ -13,7 +13,7 @@ const signup = async (req, res) => {
     let user;
     try {
         // First we check if user with same email already exists or not
-        user = await User.findOne({ email: req.body.email })
+        user = await User.find({ email: req.body.email })
 
         // if yes then we throw an error that email already exists
         if (user) return res.status(400).send({ message: "Please check your email and password" });
