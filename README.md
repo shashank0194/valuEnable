@@ -8,13 +8,19 @@
 2. Run following command in terminal:- ```https://github.com/shashank0194/valuEnable.git```
 3. Run following command in terminal:- ```cd valuEnable```
 4. It has two folder, backend and frontend
-5. For Backend run following command in terminal:- 
+5. For Backend run following command in terminal:-
+
    ```cd backend```
+
    ```npm i``` 
+
    ```npm start```
 6. For Frontend, run following command in terminal:- 
+
    ```cd frontend```
+
    ```npm i``` 
+   
    ```npm start```
 
 # Features:-
@@ -45,15 +51,15 @@ Took some help from these resources
 # Glimpse of Our Work:-
 
 ## Signup Page:-
-![Signup Page](https://github.com/pankajganjale/cryptoverse/blob/main/images/home.PNG?raw=true)
+![Signup Page](https://raw.githubusercontent.com/shashank0194/valuEnable/main/image/sc1.png)
 
 
 ## Login Page:-
-![Login Page](https://github.com/pankajganjale/cryptoverse/blob/main/images/crypto.PNG?raw=true)
+![Login Page](https://raw.githubusercontent.com/shashank0194/valuEnable/main/image/sc2.png)
 
 
 ## Dashboard Page:-
-![Dashboard Page](https://github.com/pankajganjale/cryptoverse/blob/main/images/detail.PNG?raw=true)
+![Dashboard Page](https://raw.githubusercontent.com/shashank0194/valuEnable/main/image/sc3.png)
 
 
 
