@@ -4,11 +4,8 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { loginfail, loginsucces } from '../store/Auth/actions';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 function Login() {
     const [formdata, setFormdata] = useState({})
-    const { Token } = useSelector(store => store.Auth)
-    const { error, MESSAGE } = useSelector(store => store.Register)
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -27,20 +24,17 @@ function Login() {
             password: formdata.password
         })
             .then(function (response) {
-                console.log(response.data);
                 dispatch(loginsucces(response.data.token))
                 localStorage.setItem("Token", response.data.token)
                 localStorage.setItem("isAuth", true)
                 localStorage.setItem("name", response.data.user.name)
                 localStorage.setItem("roles", response.data.user.roles)
-                // console.log(response.data.user.name);
                 alert(`Welcome ${response.data.user.name},You have successfully logged in`)
                 history.push("/")
 
             }).catch((err) => {
                 dispatch(loginfail(err.message))
-                alert("Registration failed, user already exists")
-                history.replace("/register")
+                alert("Invalid Credential")
                 setFormdata("")
             })
     }

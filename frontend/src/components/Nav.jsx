@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { loginfail } from '../store/Auth/actions'
 
+
 export const Nav = () => {
-    const { Token } = useSelector(store => store.Auth)
+    const { Token } = useSelector(store => store)
     const dispatch = useDispatch()
     return (
         <div>

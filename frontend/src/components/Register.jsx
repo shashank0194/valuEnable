@@ -2,15 +2,9 @@ import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { registerfail, registersucces } from '../store/Auth/actions';
 
 function Register() {
     const [formdata, setFormdata] = useState({})
-    const { error, MESSAGE } = useSelector(store => store.Register)
-    const dispatch = useDispatch()
     const history = useHistory()
 
     const handleChange = (e) => {
@@ -21,29 +15,23 @@ function Register() {
         })
 
     };
-    // console.log(formdata);
     const handlesubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3745/signup', {
             ...formdata
         })
             .then(function (response) {
-                dispatch(registersucces(response.data.message))
                 localStorage.setItem("Token", "valuenable")
                 localStorage.setItem("isAuth", true)
                 alert("Registration Success")
                 history.push("/login")
             }).catch(err => {
                 alert("Registration failed, user already exists")
-                dispatch(registerfail(err.message))
                 setFormdata("")
             })
 
     };
-    // console.log();
-    // if (localStorage.getItem("isAuthAdmin")!="true") {
-    //     return <Redirect to="/login"></Redirect>
-    // }
+    
     return (
         <>
             <div className="container p-5 border border-dark m-5 mx-auto bg-white" style={{ maxWidth: "500px", margin: "auto", borderRadius: "15px" }}>
