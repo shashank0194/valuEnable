@@ -2,9 +2,13 @@ const connect = require("./configs/db");
 
 const app = require("./index");
 
-app.listen(3745, async() =>{
+require("dotenv").config()
+
+const PORT = process.env.PORT || 3745
+
+app.listen(PORT, async() => {
     await connect();
-    console.log("listening on port 3745");
+    console.log('Server is running on port', PORT)
 })
 
 
