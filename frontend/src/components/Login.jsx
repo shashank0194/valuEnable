@@ -5,10 +5,16 @@ import { useHistory } from 'react-router-dom';
 import { loginfail, loginsucces } from '../store/Auth/actions';
 import { useDispatch } from 'react-redux';
 function Login() {
-    const [formdata, setFormdata] = useState({})
+    // state for form
+    const [formdata, setFormdata] = useState({
+        email: "",
+        password: "",
+    })
+
     const dispatch = useDispatch()
     const history = useHistory()
 
+    // handler function for input change in form
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormdata({
@@ -17,6 +23,7 @@ function Login() {
         })
     };
 
+    // handler function to submit the form
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3745/signin', {
@@ -26,7 +33,6 @@ function Login() {
             .then(function (response) {
                 dispatch(loginsucces(response.data.token))
                 localStorage.setItem("Token", response.data.token)
-                localStorage.setItem("isAuth", true)
                 localStorage.setItem("name", response.data.user.name)
                 localStorage.setItem("roles", response.data.user.roles)
                 alert(`Welcome ${response.data.user.name},You have successfully logged in`)
@@ -35,7 +41,10 @@ function Login() {
             }).catch((err) => {
                 dispatch(loginfail(err.message))
                 alert("Invalid Credential")
-                setFormdata("")
+                setFormdata({
+                        email: "",
+                        password: ""
+                    })
             })
     }
     return (
@@ -43,8 +52,22 @@ function Login() {
             <h1 className="text-center pb-4">Login Here</h1>
             <form >
                 <div className="mb-3">
-                    <input type="email" className="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1" name="email" onChange={handleChange} /><br />
-                    <input type="password" className="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1" name="password" onChange={handleChange} /><br />
+                    <input type="email"
+                        className="form-control"
+                        placeholder="email"
+                        aria-label="email"
+                        aria-describedby="basic-addon1"
+                        name="email"
+                        value={formdata.email}
+                        onChange={handleChange} /><br />
+                    <input type="password"
+                        className="form-control"
+                        placeholder="password"
+                        aria-label="password"
+                        aria-describedby="basic-addon1"
+                        name="password"
+                        value={formdata.password}
+                        onChange={handleChange} /><br />
                     <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={
                         handleSubmit
                     }>Login</button>

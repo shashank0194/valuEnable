@@ -1,11 +1,13 @@
 import {LOGIN_SUCCESS, LOGIN_FAIL } from "./actionTypes.js"
 
+// action for successfull login
 export const loginsucces = (Token) => {
     return {
         type: LOGIN_SUCCESS,
         payload:Token,
     }
 }
+// action for unsuccessfull login
 export const loginfail = (err) => {
     return {
         type: LOGIN_FAIL,
